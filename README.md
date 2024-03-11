@@ -1,12 +1,26 @@
 # 基于ffmpeg，可跨平台部署的 rtsp 视频播放器
 
-## 1项目简介
+## 1 项目简介
 
-本项目目前可在 x86_64_windows， x86_64_linux，arm64_linux 的设备上进行部署。以此为案例，可设计跨平台的显控软件、和嵌入式显示设备。
+本项目为基于ffmpeg，可跨平台部署的 rtsp 视频播放器。目前可在 `x86_64_windows`， `x86_64_linux`，`arm64_linux` 的设备上进行部署。
 
+以此为案例，可设计跨平台的显控软件、和嵌入式显示设备。
 
+### 2 项目结构
 
-## 2 环境配置
+```
+rtsp-ffmpeg-webcam/
+├── （项目主文件）
+├── ffmpeg    					(ffmpeg 子项目)
+    ├──(子项目主文件)
+    ├──ffmpeg4/include64        (头文件)
+    └──bin      
+	    ├──amd64_linux          (x86_linux 的动态库)
+		├──arm_inux       		(arm_linux 的动态库)
+		└──amd64_win            (x86_win   的动态库)
+```
+
+## 3 环境配置
 
 项目依赖
 
@@ -14,6 +28,8 @@
 qt 5.14.2
 ffmpeg 4.2.1
 ```
+
+windows平台可以直接使用。
 
 注：linux平台 ffmpeg中已有H.264的解码，但没有编码，所以需要先编译libx264，它是自由的H.264编码库，是x264项目的一部分。这里简介一下 x264 的编译流程
 
@@ -39,7 +55,7 @@ make && make install
 	├── include
 	│   ├── x264_config.h
 	│   └── x264.h
-	└── lib
+	── lib
 	    ├── libx264.so -> libx264.so.152
 	    ├── libx264.so.152
 	    └── pkgconfig
@@ -51,7 +67,9 @@ make && make install
 
 #### 2.1.1 arm_linux平台
 
-如果是直接在 arm_linux 上编译的，步骤同上。如果是需要在 x86 平台进行交叉编译。如下设置
+如果是直接在 arm_linux 上编译的，步骤同上。
+
+如果是需要在 x86 平台进行**交叉编译**，则 `./configure` 部分如下设置，即 使用 arm-linux 的编译器
 
 ```shell
 ./configure --prefix=/home/usrname/arm-lib/x264 --enable-shared --enable-static --host=arm-linux --cross-prefix=aarch64-linux-gnu- --disable-opencl --enable-pic --disable-asm
@@ -66,4 +84,5 @@ make && make install
 本项目并不需要编译ffmpeg，为了使用方便，已经将各个平台的动态库放在了文件夹中。完成2.1后可直接运行使用。
 
 源码下载：[Index of /releases (ffmpeg.org)](https://ffmpeg.org/releases/)
+
 
