@@ -55,7 +55,7 @@ make && make install
 	├── include
 	│   ├── x264_config.h
 	│   └── x264.h
-	── lib
+	└── lib
 	    ├── libx264.so -> libx264.so.152
 	    ├── libx264.so.152
 	    └── pkgconfig
@@ -81,8 +81,24 @@ make && make install
 
 ### 3.1 编译ffmpeg
 
-本项目并不需要编译ffmpeg，为了使用方便，已经将各个平台的动态库放在了文件夹中。完成2.1后可直接运行使用。
+本项目并不需要编译ffmpeg，为了使用方便，笔者已经将各个平台的动态库放在了`./ffmpeg/bin`文件夹中。完成2.1后可直接运行使用。
 
-源码下载：[Index of /releases (ffmpeg.org)](https://ffmpeg.org/releases/)
+也可选择源码编译,可以参考下面的链接。源码下载：[Index of /releases (ffmpeg.org)](https://ffmpeg.org/releases/)
 
 
+## 4 编译运行
+
+ubunutu22.04 环境运行
+
+![screen](./doc/screen.png)
+
+windows11 环境运行
+
+![screen2](./doc/screen2.png)
+
+## 参考
+[参考1](https://zhuanlan.zhihu.com/p/147315845)
+
+[参考2](https://blog.csdn.net/weixin_44498318/article/details/112987608)
+
+[参考3](https://blog.csdn.net/qq_39436605/article/details/82850507)
